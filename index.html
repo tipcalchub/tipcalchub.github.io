@@ -1,0 +1,765 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="google-site-verification" content="HoWofmErOOKMSn8dHeXvBTb5cGoEBEB1rQ7Y3CrUYgY" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="light dark" />
+<link rel="icon" href="data:," />
+<title>TipCalcHub — Tip Calculator: Work Out Tips, Tax &amp; Bill Splits Instantly</title>
+<meta name="description" content="TipCalcHub is a free tip calculator that works out the tip, tax, grand total and per-person share in seconds. Includes a full tipping guide, restaurant tipping advice, and etiquette for countries around the world." />
+<link rel="canonical" href="https://tipcalchub.github.io/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="TipCalcHub" />
+<meta property="og:title" content="TipCalcHub — Tip Calculator &amp; Tipping Guide" />
+<meta property="og:description" content="Calculate tips, tax and per-person splits instantly, and learn how much to tip at restaurants, bars, hotels and more — in the US and around the world." />
+<meta property="og:url" content="https://tipcalchub.github.io/" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="TipCalcHub — Tip Calculator &amp; Tipping Guide" />
+<meta name="twitter:description" content="Free tip calculator with tax and bill splitting, plus honest tipping guides and worldwide etiquette." />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "TipCalcHub",
+  "url": "https://tipcalchub.github.io/",
+  "description": "A free tip calculator with tax and bill-splitting, plus original tipping guides and etiquette advice."
+}
+</script>
+<style>
+  :root{
+    --bg:#FBF4E3;
+    --bg-soft:#F6EAD0;
+    --surface:#FFFDF7;
+    --ink:#33240F;
+    --ink-soft:#6B5636;
+    --accent:#B45309;
+    --accent-strong:#92400E;
+    --accent-soft:#F3DFB8;
+    --line:#E3D3AC;
+    --good:#7C4A12;
+    --shadow:0 1px 2px rgba(90,60,10,.08);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#211708;
+      --bg-soft:#2B1E0B;
+      --surface:#2E2009;
+      --ink:#F5E8CE;
+      --ink-soft:#CDB488;
+      --accent:#F2A93B;
+      --accent-strong:#FFC35C;
+      --accent-soft:#4A3410;
+      --line:#4A3818;
+      --good:#FFC35C;
+      --shadow:0 1px 2px rgba(0,0,0,.4);
+    }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    font-size:17px;
+    line-height:1.65;
+  }
+  h1,h2,h3,h4{
+    font-family:Georgia,"Iowan Old Style","Times New Roman",serif;
+    line-height:1.25;
+    color:var(--ink);
+    margin:0 0 .5em;
+  }
+  h1{font-size:2.35rem}
+  h2{font-size:1.65rem;margin-top:2.2em}
+  h3{font-size:1.22rem;margin-top:1.6em}
+  p{margin:0 0 1em}
+  a{color:var(--accent-strong);text-decoration:underline;text-underline-offset:2px}
+  a:hover{color:var(--accent)}
+  .wrap{max-width:880px;margin:0 auto;padding:0 20px}
+  /* Nav */
+  header.site{
+    border-bottom:1px solid var(--line);
+    background:var(--bg-soft);
+  }
+  .nav{
+    display:flex;flex-wrap:wrap;align-items:center;gap:6px 22px;
+    padding:14px 0;
+  }
+  .brand{
+    font-family:Georgia,serif;font-weight:700;font-size:1.3rem;
+    color:var(--ink);text-decoration:none;margin-right:auto;
+  }
+  .brand span{color:var(--accent)}
+  .nav a.nl{
+    color:var(--ink);text-decoration:none;font-size:.98rem;
+    padding:8px 4px;min-height:36px;display:inline-flex;align-items:center;
+  }
+  .nav a.nl:hover{color:var(--accent-strong);text-decoration:underline}
+  /* Hero */
+  .hero{padding:44px 0 8px}
+  .hero p.lede{font-size:1.14rem;color:var(--ink-soft);max-width:640px}
+  /* Calculator */
+  .calc{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:26px 24px 22px;
+    margin:26px 0 10px;
+  }
+  .calc h2{margin-top:0;font-size:1.4rem}
+  .field{margin-bottom:18px}
+  .field label{display:block;font-weight:600;margin-bottom:6px;font-size:.98rem}
+  .field .hint{font-weight:400;color:var(--ink-soft);font-size:.88rem}
+  input[type="number"],input[type="text"],input[type="email"],textarea,select{
+    width:100%;padding:11px 12px;font-size:1.05rem;
+    border:1px solid var(--line);border-radius:8px;
+    background:var(--bg);color:var(--ink);min-height:44px;
+    font-family:inherit;
+  }
+  input:focus,textarea:focus,select:focus{outline:2px solid var(--accent);outline-offset:1px}
+  .presets{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+  .presets button{
+    flex:1 1 64px;min-height:44px;padding:10px 6px;
+    border:1px solid var(--line);border-radius:8px;
+    background:var(--bg);color:var(--ink);
+    font-size:1rem;font-weight:600;cursor:pointer;font-family:inherit;
+  }
+  .presets button.active{background:var(--accent);border-color:var(--accent);color:#FFF7E8}
+  .presets button:hover{border-color:var(--accent)}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media (max-width:560px){.row2{grid-template-columns:1fr}}
+  .checkline{display:flex;align-items:flex-start;gap:10px;font-weight:400}
+  .checkline input{width:22px;height:22px;margin-top:3px;flex:none;accent-color:var(--accent)}
+  .results{
+    border-top:1px dashed var(--line);
+    margin-top:6px;padding-top:18px;
+  }
+  .results dl{margin:0;display:grid;grid-template-columns:1fr auto;row-gap:8px;font-size:1.05rem}
+  .results dt{color:var(--ink-soft)}
+  .results dd{margin:0;font-weight:600;font-variant-numeric:tabular-nums}
+  .results .grand dt{color:var(--ink);font-weight:700;font-size:1.15rem}
+  .results .grand dd{font-size:1.3rem;color:var(--accent-strong)}
+  .results .perperson{background:var(--accent-soft);border-radius:8px;padding:10px 14px;margin-top:14px}
+  .results .perperson dl{row-gap:4px}
+  .err{color:#B3261E;font-size:.92rem;min-height:1.2em;margin-top:4px}
+  @media (prefers-color-scheme: dark){.err{color:#FF9D94}}
+  /* Content */
+  main{padding-bottom:20px}
+  section.page{display:none}
+  section.page.on{display:block}
+  .prose{max-width:720px}
+  ul.plain,ol.plain{margin:0 0 1.2em;padding-left:1.4em}
+  ul.plain li,ol.plain li{margin-bottom:.45em}
+  table.data{
+    border-collapse:collapse;width:100%;margin:0 0 1.4em;font-size:.98rem;
+  }
+  table.data th,table.data td{
+    text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top;
+  }
+  table.data th{font-family:Georgia,serif;background:var(--bg-soft)}
+  table.data td.num,table.data th.num{text-align:right;font-variant-numeric:tabular-nums}
+  .example{
+    background:var(--bg-soft);border-radius:8px;padding:16px 18px;margin:0 0 1.2em;
+  }
+  .example p:last-child{margin-bottom:0}
+  .article-list{list-style:none;padding:0;margin:0 0 1em}
+  .article-list li{padding:16px 0;border-bottom:1px solid var(--line)}
+  .article-list h3{margin:0 0 4px}
+  .article-list p{margin:0;color:var(--ink-soft)}
+  .meta-line{color:var(--ink-soft);font-size:.9rem;margin-bottom:1.4em}
+  .backlink{display:inline-block;margin:22px 0 6px;min-height:36px}
+  .faqitem{border-bottom:1px solid var(--line);padding:14px 0}
+  .faqitem h3{margin:0 0 6px;font-size:1.1rem}
+  .faqitem p{margin:0;color:var(--ink-soft)}
+  .note{background:var(--bg-soft);border-radius:8px;padding:14px 18px;margin:0 0 1.2em}
+  .note p:last-child{margin-bottom:0}
+  footer.site{
+    border-top:1px solid var(--line);background:var(--bg-soft);
+    margin-top:56px;padding:28px 0 36px;font-size:.94rem;color:var(--ink-soft);
+  }
+  footer.site .cols{display:flex;flex-wrap:wrap;gap:8px 28px;margin-bottom:14px}
+  footer.site a{color:var(--ink-soft);padding:6px 0;display:inline-block;min-height:32px}
+  footer.site a:hover{color:var(--accent-strong)}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  button,.btn{min-height:36px}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav">
+    <a class="brand" href="#/">Tip<span>Calc</span>Hub</a>
+    <a class="nl" href="#/">Calculator</a>
+    <a class="nl" href="#/articles">Articles</a>
+    <a class="nl" href="#/faq">FAQ</a>
+    <a class="nl" href="#/about">About</a>
+    <a class="nl" href="#/contact">Contact</a>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ============================ HOME ============================ -->
+<section class="page" id="page-home">
+
+  <div class="hero">
+    <h1>Tip Calculator</h1>
+    <p class="lede">Work out the tip, the tax and exactly what each person owes — in about five seconds, with no mental maths at the table. Enter your bill below and TipCalcHub does the rest.</p>
+  </div>
+
+  <div class="calc" id="calculator">
+    <h2>Calculate your tip</h2>
+
+    <div class="field">
+      <label for="bill">Bill amount</label>
+      <input type="number" id="bill" inputmode="decimal" min="0" step="0.01" placeholder="e.g. 86.40" autocomplete="off" />
+    </div>
+
+    <div class="field">
+      <label>Tip percentage</label>
+      <div class="presets" role="group" aria-label="Tip percentage presets">
+        <button type="button" data-tip="10">10%</button>
+        <button type="button" data-tip="15" class="active">15%</button>
+        <button type="button" data-tip="18">18%</button>
+        <button type="button" data-tip="20">20%</button>
+        <button type="button" data-tip="25">25%</button>
+      </div>
+      <label for="customTip" class="sr">Custom tip percentage</label>
+      <input type="number" id="customTip" inputmode="decimal" min="0" step="0.5" placeholder="Or type a custom % — e.g. 17" autocomplete="off" />
+    </div>
+
+    <div class="row2">
+      <div class="field">
+        <label for="people">Split between <span class="hint">(people)</span></label>
+        <input type="number" id="people" inputmode="numeric" min="1" step="1" value="1" autocomplete="off" />
+      </div>
+      <div class="field">
+        <label for="taxRate">Tax rate % <span class="hint">(optional)</span></label>
+        <input type="number" id="taxRate" inputmode="decimal" min="0" step="0.1" placeholder="e.g. 8.25" autocomplete="off" />
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="checkline">
+        <input type="checkbox" id="tipOnTax" />
+        <span>Calculate the tip on the total including tax <span class="hint">(most people tip on the pre-tax amount — see our guide on <a href="#/article/tip-vs-service-charge">tip vs. service charge</a>)</span></span>
+      </label>
+    </div>
+
+    <div class="err" id="calcErr" role="alert"></div>
+
+    <div class="results" aria-live="polite">
+      <dl>
+        <dt>Tip amount</dt><dd id="rTip">$0.00</dd>
+        <dt>Tax amount</dt><dd id="rTax">$0.00</dd>
+        <dt class="grand">Grand total</dt><dd class="grand" id="rTotal" style="font-weight:700">$0.00</dd>
+      </dl>
+      <div class="perperson" id="perPersonBox">
+        <dl>
+          <dt>Each person pays</dt><dd id="rEach">$0.00</dd>
+          <dt>of which tip</dt><dd id="rEachTip">$0.00</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+
+  <div class="prose">
+    <h2>How the tip calculator works</h2>
+    <p>The maths behind tipping is simple, but doing it in your head while a server waits with the card machine is another matter. This calculator follows the same steps a careful diner would take on paper. First it takes your bill amount. Then it works out the tax, if you enter a tax rate — handy in US states and cities where sales tax is added on top of menu prices. Next it calculates the tip as a percentage of the bill. By default the tip is figured on the pre-tax subtotal, which is the convention most etiquette guides recommend; tick the box if you prefer to tip on the full amount. Finally it adds everything together and divides the total evenly by the number of people splitting the bill.</p>
+    <p>Every figure updates the moment you type, so you can experiment freely: nudge the percentage up for great service, add a person to the split, or test how much difference the tax rate makes. If you are not sure which percentage is appropriate in the first place, our complete <a href="#/article/how-much-to-tip">guide to how much to tip</a> walks through the standard rates for dozens of situations, from a quick coffee to a wedding bar.</p>
+
+    <h2>How much should you tip? A quick guide by service</h2>
+    <p>Tipping customs vary by situation far more than most people realise. The percentages below are the widely accepted ranges in the United States; our <a href="#/article/tipping-in-restaurants">restaurant tipping guide</a> explains the reasoning in more depth, and the country-by-country section further down covers what changes when you travel.</p>
+
+    <table class="data">
+      <thead>
+        <tr><th>Service</th><th class="num">Typical tip</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Restaurant, table service</td><td class="num">15–20%</td><td>20% for attentive service; 25% is generous</td></tr>
+        <tr><td>Bar / bartender</td><td class="num">$1–2 per drink</td><td>Or 15–20% of the tab if you run one up</td></tr>
+        <tr><td>Food delivery</td><td class="num">15–20%</td><td>$3–5 minimum; more in bad weather or over distance</td></tr>
+        <tr><td>Takeaway / counter service</td><td class="num">0–10%</td><td>Optional; the jar or screen prompt is your call</td></tr>
+        <tr><td>Taxi / rideshare</td><td class="num">15–20%</td><td>Round up for short trips</td></tr>
+        <tr><td>Hairdresser / barber</td><td class="num">15–20%</td><td>Plus a small extra for assistants who wash hair</td></tr>
+        <tr><td>Hotel housekeeping</td><td class="num">$2–5 per night</td><td>Leave it daily — different staff clean each day</td></tr>
+        <tr><td>Hotel concierge</td><td class="num">$5–20</td><td>Depends on the favour: a booking vs. hard-to-get tickets</td></tr>
+        <tr><td>Valet parking</td><td class="num">$2–5</td><td>Paid when the car is returned to you</td></tr>
+        <tr><td>Tour guide</td><td class="num">10–20%</td><td>Of the tour price; group tours often suggest a flat amount</td></tr>
+      </tbody>
+    </table>
+
+    <p>Two things catch people out. The first is the difference between a voluntary tip and a mandatory charge added by the business — we untangle that in <a href="#/article/tip-vs-service-charge">tip vs. service charge: what is the difference?</a> The second is large groups: many restaurants add an automatic gratuity for parties of six or more, so check the bill before adding a second tip on top.</p>
+
+    <h2>Tipping etiquette around the world</h2>
+    <p>The American habit of tipping 15–20% is not a global rule — it is a local custom that can look generous, normal or even rude depending on where you land. In much of Europe a service charge is already folded into the bill, and rounding up or leaving a few coins is plenty. In Japan, tipping is not expected at all and can cause genuine confusion, because excellent service is considered part of the job rather than something bought separately. Australia and New Zealand sit somewhere in between: tipping is appreciated but never demanded, and nobody's wages depend on it.</p>
+    <p>Before a trip, it pays to read up on the norms for your destination. Our article on <a href="#/article/tipping-around-the-world">tipping around the world</a> covers more than twenty countries, what to leave, and the situations where you should keep your wallet closed. A two-minute read can save you from both overpaying and accidentally offending someone.</p>
+
+    <h2>Worked examples</h2>
+    <p>Numbers make the rules easier to remember, so here are three everyday situations run through the calculator above.</p>
+
+    <div class="example">
+      <p><strong>Dinner for two.</strong> The bill is $100 and the service was good, so you choose 15%. The tip is $15.00, the total is $115.00, and split between two people that is <strong>$57.50 each</strong>. Try it: type 100 into the calculator, tap 15%, and set the split to 2.</p>
+    </div>
+    <div class="example">
+      <p><strong>Family meal with tax.</strong> A bill of $86.40 in a city with 8.25% sales tax comes to $7.13 in tax. A 20% tip on the pre-tax subtotal is $17.28, making a grand total of $110.81 — or $27.70 each when four people split it evenly.</p>
+    </div>
+    <div class="example">
+      <p><strong>Group night out.</strong> Six friends run up a $240 bar tab. At 20% the tip is $48, the total is $288, and the per-person share lands on a satisfyingly round $48 each. Splitting evenly is exactly where a calculator earns its keep — nobody has to be the table's accountant.</p>
+    </div>
+
+    <h2>Why tipping exists at all</h2>
+    <p>Modern tipping in the United States grew out of a specific history: after the Civil War, some employers — railways and restaurants among them — hired formerly enslaved people and paid them little or nothing, expecting customers' tips to make up the wage. The practice stuck, and today the US federal tipped minimum wage is still far below the standard minimum wage, which is why tips in America are closer to a wage contribution than a bonus. In most of Europe, by contrast, service staff are paid a full wage and a service charge is often included by law or custom, so tips there really are a small extra thank-you. Understanding that difference explains most of the confusing variation you will meet — and it is why the same 20% that is ordinary in Chicago would be startling in Copenhagen. Our <a href="#/articles">articles section</a> digs into these questions properly, including <a href="#/article/tipping-in-restaurants">how restaurant tipping actually works</a> behind the scenes.</p>
+
+    <h2>Common questions</h2>
+    <div class="faqitem">
+      <h3>Should I tip on the amount before or after tax?</h3>
+      <p>Before tax is the standard recommendation. Tax is money that goes to the government, not the restaurant, so most guides calculate the tip on the pre-tax subtotal. The calculator above does this by default.</p>
+    </div>
+    <div class="faqitem">
+      <h3>What if a service charge is already on the bill?</h3>
+      <p>Then an additional tip is usually optional. Check whether the charge goes to staff and how large it is — our <a href="#/article/tip-vs-service-charge">comparison of tips and service charges</a> explains what to look for.</p>
+    </div>
+    <div class="faqitem">
+      <h3>Is 15% still an acceptable restaurant tip?</h3>
+      <p>Yes — 15% remains the accepted baseline for decent table service in the US, with 18–20% now common for good service. See the full breakdown in <a href="#/article/how-much-to-tip">how much to tip: the complete guide</a>.</p>
+    </div>
+    <p>More answers — including tipping on takeaway, tipping in cash vs. by card, and what to do about poor service — are on our <a href="#/faq">full FAQ page</a>.</p>
+
+    <h2>Read more on TipCalcHub</h2>
+    <ul class="plain">
+      <li><a href="#/article/how-much-to-tip">How Much to Tip: The Complete Guide</a> — standard percentages for restaurants, bars, delivery, hotels, salons and more.</li>
+      <li><a href="#/article/tipping-in-restaurants">Tipping in Restaurants: Everything Diners Get Wrong</a> — pre-tax vs. post-tax, large parties, and poor service.</li>
+      <li><a href="#/article/tip-vs-service-charge">Tip vs. Service Charge: What Is the Difference?</a> — who actually receives each, and when you can skip the extra.</li>
+      <li><a href="#/article/tipping-around-the-world">Tipping Around the World</a> — etiquette for 20+ countries, from Tokyo to Paris.</li>
+    </ul>
+    <p>TipCalcHub is a small, independent site. The calculator runs entirely in your browser — no account, no sign-up, and nothing you type leaves your device. You can read more <a href="#/about">about the site</a>, check our <a href="#/privacy">privacy policy</a>, or <a href="#/contact">get in touch</a> with a suggestion.</p>
+  </div>
+</section>
+
+<!-- ============================ ARTICLES INDEX ============================ -->
+<section class="page" id="page-articles">
+  <div class="prose">
+    <h1>Tipping Articles &amp; Guides</h1>
+    <p>Original, plain-English guides to tipping: how much to leave, where the money goes, and how customs change from one country to the next. Every guide is written to be useful at the moment you are actually handed a bill.</p>
+    <ul class="article-list">
+      <li>
+        <h3><a href="#/article/how-much-to-tip">How Much to Tip: The Complete Guide</a></h3>
+        <p>The standard percentages for restaurants, bars, delivery drivers, hotels, salons, taxis and more — plus the situations where tipping is genuinely optional.</p>
+      </li>
+      <li>
+        <h3><a href="#/article/tipping-in-restaurants">Tipping in Restaurants: Everything Diners Get Wrong</a></h3>
+        <p>Pre-tax or post-tax? What about large parties, split bills and truly bad service? A clear-eyed look at the rules of restaurant tipping.</p>
+      </li>
+      <li>
+        <h3><a href="#/article/tip-vs-service-charge">Tip vs. Service Charge: What Is the Difference?</a></h3>
+        <p>They look identical on the bill, but legally and practically they are very different. Who receives each one, and when you can skip the extra tip.</p>
+      </li>
+      <li>
+        <h3><a href="#/article/tipping-around-the-world">Tipping Around the World: A Traveller's Guide</a></h3>
+        <p>From Japan, where tipping can confuse, to France, where service is included — etiquette for more than twenty countries.</p>
+      </li>
+    </ul>
+    <p>Want the numbers without the reading? Head back to the <a href="#/">tip calculator</a>.</p>
+  </div>
+</section>
+
+<!-- ============================ ARTICLE: HOW MUCH ============================ -->
+<section class="page" id="page-article-how-much-to-tip">
+  <div class="prose">
+    <a class="backlink" href="#/articles">&larr; All articles</a>
+    <h1>How Much to Tip: The Complete Guide</h1>
+    <p class="meta-line">A practical guide to standard tip amounts for everyday services.</p>
+
+    <p>Few small social questions cause as much quiet anxiety as "how much should I tip?" Tip too little and you feel stingy; tip too much and you have overpaid for a haircut. The good news is that there are settled norms for almost every situation. This guide collects them in one place, explains why they are what they are, and flags the cases where tipping is truly optional. When you know the amount, use the <a href="#/">tip calculator</a> to split it fairly.</p>
+
+    <h2>Restaurants and bars</h2>
+    <p>For table service in the United States, 15% of the pre-tax bill is the accepted floor for adequate service, 18–20% is the standard for good service, and 25% or more is a genuine compliment. These percentages are high by world standards because US servers are often paid a reduced "tipped wage" by their employer, with tips expected to make up the difference. At a bar, the convention is simpler: $1–2 per drink, or 15–20% if you are settling a tab at the end of the night. For a deeper look at the restaurant rules — large parties, wine, split bills — read our dedicated guide to <a href="#/article/tipping-in-restaurants">tipping in restaurants</a>.</p>
+
+    <h2>Delivery and takeaway</h2>
+    <p>Food delivery drivers should receive 15–20% of the order, with a sensible minimum of $3–5 even on small orders, because the driver's effort barely changes with the size of the bag. Add more for long distances, large orders, stairs, or bad weather. Grocery and alcohol delivery follow the same pattern. Takeaway is different: when you collect food from a counter, a tip is a kind gesture rather than an obligation — 10% or the spare change is generous, and leaving nothing is socially acceptable, whatever the payment screen suggests.</p>
+
+    <h2>Hotels</h2>
+    <p>Hotels involve several different people, each tipped separately and usually in cash. Housekeeping: $2–5 per night, left daily rather than in a lump sum at checkout, because a different person may clean your room each day. Bell staff: $1–2 per bag. Doorman: $1–2 for hailing a taxi or helping with luggage. Concierge: $5–20 depending on the difficulty of the request — a restaurant recommendation costs nothing, but scoring sold-out theatre tickets deserves the top of the range. Room service usually has a service charge built in; check before adding more, as explained in our article on <a href="#/article/tip-vs-service-charge">tips vs. service charges</a>.</p>
+
+    <h2>Personal services</h2>
+    <p>Hairdressers and barbers receive 15–20% of the service price. If an assistant washed your hair, a separate $2–5 is a thoughtful touch. Nail technicians, massage therapists and spa staff sit in the same 15–20% band. Tattoo artists are commonly tipped 15–25%, reflecting the permanence of the work. Movers — often forgotten — deserve $20–40 per person for a half day, more for stairs, pianos and summer heat.</p>
+
+    <h2>Travel and transport</h2>
+    <p>Taxi and rideshare drivers: 15–20% of the fare, rounding up on short trips. Airport shuttle drivers: $2–5 per person or per bag handled. Tour guides: 10–20% of the tour price, or the per-person amount suggested by the operator on group tours. Valet attendants are tipped $2–5 when your car is returned — that timing matters, because the tip should reach the person who actually fetched it.</p>
+
+    <h2>When tipping is optional — or inappropriate</h2>
+    <p>Not every outstretched hand expects a tip. Counter staff at coffee shops and fast-food restaurants are paid full wages, so the tip jar is genuinely optional. Professionals such as plumbers, electricians and teachers are not tipped in most cultures — a good review or a repeat booking is the appropriate thank-you. And in some countries, notably Japan, offering a tip can create an awkward moment rather than a warm one; our guide to <a href="#/article/tipping-around-the-world">tipping around the world</a> covers where to keep your wallet closed.</p>
+
+    <h2>A simple rule of thumb</h2>
+    <p>If you remember nothing else: 15% for adequate, 20% for good, cash where possible for hotel staff, and always check the bill first for charges already added. Tipping well is cheap goodwill — the difference between 15% and 20% on a $60 dinner is three dollars, and it is remembered long after the meal is forgotten.</p>
+
+    <p><a href="#/articles">&larr; Back to all articles</a> &nbsp;·&nbsp; <a href="#/">Open the tip calculator</a></p>
+  </div>
+</section>
+
+<!-- ============================ ARTICLE: RESTAURANTS ============================ -->
+<section class="page" id="page-article-tipping-in-restaurants">
+  <div class="prose">
+    <a class="backlink" href="#/articles">&larr; All articles</a>
+    <h1>Tipping in Restaurants: Everything Diners Get Wrong</h1>
+    <p class="meta-line">The rules, the grey areas, and the mistakes that cost diners money.</p>
+
+    <p>Restaurant tipping seems simple — a percentage at the end of the meal — yet it generates more confusion than every other kind of tipping combined. Do you tip on the total including tax? What if the restaurant added a charge already? Does a big group change the rules? Here are the questions diners actually argue about, answered plainly.</p>
+
+    <h2>Tip on the pre-tax amount</h2>
+    <p>The standard is to calculate your tip on the bill before sales tax is added. Tax is a government levy, not a service the restaurant provided, and tipping on it quietly inflates your gratuity — in a high-tax city, tipping 20% on the post-tax total is effectively tipping 22%. The <a href="#/">TipCalcHub calculator</a> follows the pre-tax convention by default and lets you switch it on if you prefer to be generous. Either way, do it deliberately rather than by accident.</p>
+
+    <h2>Check for charges already added</h2>
+    <p>Before you write in a tip, read the bill. Many restaurants add an automatic gratuity — often 18–20% — for parties of six or more, and a growing number add a small "kitchen appreciation" or service fee for all tables. If a full gratuity is already there, adding another 20% on top means tipping 40%, which flatters nobody's budget. The line between a tip and a service charge matters here, because the two are treated differently by law; our explainer on <a href="#/article/tip-vs-service-charge">tip vs. service charge</a> shows you how to tell them apart on a real bill.</p>
+
+    <h2>Your server does not keep the whole tip</h2>
+    <p>Many diners imagine their tip lands entirely in their server's pocket. In reality, most restaurants operate a tip pool or "tip-out": your server shares a percentage with bartenders, bussers, food runners and sometimes hosts. That is one reason tipping on the full bill — including drinks — is expected even if a bartender poured them. It also means a harsh tip for a kitchen mistake punishes the wrong people; if the food was the problem, mention it to a manager rather than docking the server.</p>
+
+    <h2>What about genuinely bad service?</h2>
+    <p>The accepted approach is to tip for the service you received, but to speak up before you settle the bill. A cold dish, a forgotten order or a long wait is usually fixable in the moment, and managers would rather hear it from you than read it in a review. If the service was truly neglectful, reducing the tip to 10% sends a clear signal; leaving nothing at all is widely read as "I forgot" rather than "I was unhappy", so if you do it, say why — politely, to the manager, not as a parting shot.</p>
+
+    <h2>Splitting the bill fairly</h2>
+    <p>Splitting evenly is painless when everyone ordered similarly, and quietly unfair when one person had water and a salad while another had cocktails and steak. Two honest methods work well: split evenly when the orders are roughly comparable (it keeps friendships smooth), or ask the server for separate checks at the start of the meal — never at the end. When splitting evenly, run the total through the <a href="#/">calculator</a> with the number of people entered, and each person's share including their portion of the tip appears instantly.</p>
+
+    <h2>Cash or card?</h2>
+    <p>Servers generally prefer cash: it reaches them the same night, untouched by card-processing fees that some restaurants deduct from card tips. Card tips are still perfectly acceptable and are increasingly the only option at cashless restaurants. What matters most is that the tip is proportionate and the bill is checked. For the headline percentages across every kind of venue, keep our <a href="#/article/how-much-to-tip">complete guide to how much to tip</a> bookmarked.</p>
+
+    <p><a href="#/articles">&larr; Back to all articles</a> &nbsp;·&nbsp; <a href="#/">Open the tip calculator</a></p>
+  </div>
+</section>
+
+<!-- ============================ ARTICLE: SERVICE CHARGE ============================ -->
+<section class="page" id="page-article-tip-vs-service-charge">
+  <div class="prose">
+    <a class="backlink" href="#/articles">&larr; All articles</a>
+    <h1>Tip vs. Service Charge: What Is the Difference?</h1>
+    <p class="meta-line">They look the same on the bill. Legally and practically, they are not.</p>
+
+    <p>Two lines on a restaurant bill can look identical — "gratuity 18%" and "service charge 18%" — yet they mean different things, go to different people, and leave you with different obligations. Understanding the distinction takes two minutes and can save you from double-tipping or, worse, under-tipping staff who received nothing.</p>
+
+    <h2>What a tip is</h2>
+    <p>A tip (or gratuity) is a voluntary payment from a customer to an employee. The key word is voluntary: the amount is your choice, and under US labour rules the money belongs to the employees, not the business. Employers may organise a tip pool among staff who customarily receive tips, but they cannot keep tip money for the house or use it to pay managers. When you add a tip on a card slip or in cash, you can be reasonably confident it reaches the staff.</p>
+
+    <h2>What a service charge is</h2>
+    <p>A service charge is a mandatory fee set by the business. Because it is compulsory, it is legally treated as revenue of the business — like the price of the food. The restaurant may pass some, all or none of it to staff, and it is not required to tell you the split unless local law says otherwise (a few US cities and states now mandate disclosure). Service charges are common for large parties, banquets, room service and catering contracts, and they are the default model in much of Europe, where "service compris" means service is included in menu prices.</p>
+
+    <h2>Why the difference matters to you</h2>
+    <p>Three practical consequences follow. First, double-tipping: if a mandatory 18% service charge or automatic gratuity is already on the bill, adding a standard tip on top is usually unnecessary — a small extra for exceptional service is a choice, not an expectation. Second, staff income: a generous-looking service charge may not reach your server at all, which is why some diners add a modest cash tip even when a charge is present. Third, tax: in many jurisdictions a mandatory service charge is taxed like a sale, while a voluntary tip is not, which slightly changes the final total you will see in the <a href="#/">calculator</a>.</p>
+
+    <h2>How to read your bill</h2>
+    <ul class="plain">
+      <li><strong>"Gratuity" or "tip" with a blank line beside it</strong> — voluntary; nothing has been added yet.</li>
+      <li><strong>"Gratuity included" or "automatic gratuity"</strong> — already added, usually for large parties. Adding more is optional.</li>
+      <li><strong>"Service charge"</strong> — mandatory business fee. Ask, if you like, how much reaches the staff; good restaurants answer happily.</li>
+      <li><strong>"Kitchen fee", "wellness charge", "administrative fee"</strong> — business fees, not tips. They do not replace a tip for your server.</li>
+    </ul>
+    <p>If anything is unclear, asking "is any of this a tip that goes to the staff?" is a normal, welcome question — staff would rather you ask than guess wrong in either direction.</p>
+
+    <h2>The short version</h2>
+    <p>A tip is your money given to staff by choice. A service charge is the business's money, charged by rule. When a full service charge is already applied, a further tip is a bonus, not a duty; when only small fees appear, your server is still relying on a normal tip. For the standard amounts in every scenario, see <a href="#/article/how-much-to-tip">how much to tip: the complete guide</a>, and for how restaurants handle these charges day to day, read <a href="#/article/tipping-in-restaurants">tipping in restaurants</a>.</p>
+
+    <p><a href="#/articles">&larr; Back to all articles</a> &nbsp;·&nbsp; <a href="#/">Open the tip calculator</a></p>
+  </div>
+</section>
+
+<!-- ============================ ARTICLE: WORLD ============================ -->
+<section class="page" id="page-article-tipping-around-the-world">
+  <div class="prose">
+    <a class="backlink" href="#/articles">&larr; All articles</a>
+    <h1>Tipping Around the World: A Traveller's Guide</h1>
+    <p class="meta-line">What to leave — and what to keep in your pocket — in more than twenty countries.</p>
+
+    <p>Tipping is one of the easiest ways to accidentally break a social rule abroad. The percentage that marks you as fair in New York marks you as flashy in Paris and as confusing in Tokyo. The differences are not random: they track how service staff are paid in each country. Where wages are low and tipping is built into the pay system, tips are large and expected. Where staff earn a full wage and service is priced in, tips shrink to a token — or disappear entirely.</p>
+
+    <h2>Where tipping is expected and substantial</h2>
+    <p><strong>United States and Canada</strong> lead the world: 15–20% in restaurants, $1–2 per drink at bars, and tips for everyone from taxi drivers to hotel housekeepers. <strong>Mexico</strong> follows at 10–15% in restaurants, with small cash tips for hotel staff and petrol station attendants. In much of the <strong>Middle East</strong> — Egypt, Jordan, the UAE — 10–15% is customary in restaurants, often on top of a service charge already in the bill, and small notes for hotel staff are routine. <strong>South Africa</strong> expects 10–15% in restaurants and small amounts for car guards and petrol attendants.</p>
+
+    <h2>Where service is included and small tips suffice</h2>
+    <p>In <strong>France</strong>, law requires menu prices to include service ("service compris"), so the bill is the bill; leaving a few euros in cash for good service is a kind extra, not a duty. <strong>Italy</strong> adds a "coperto" cover charge, and rounding up or leaving €1–2 per person is plenty. <strong>Spain and Portugal</strong> are similar: locals leave small change or round up, and 5–10% marks you as generous. In <strong>Germany and Austria</strong>, tipping is real but modest — round the bill up to a round number and hand it to the server directly, saying the total you want to pay, rather than leaving cash on the table. <strong>The United Kingdom</strong> sits at 10–12.5% in restaurants, frequently added as an optional service charge you may ask to remove; pub staff are not tipped per drink, though "and one for yourself" remains a charming offer some bartenders accept as a small cash amount.</p>
+
+    <h2>Where tipping is not the custom</h2>
+    <p><strong>Japan</strong> is the famous case: there is no tipping culture, staff are paid full wages, and an offered tip may be politely refused or chased after you as forgotten money. Excellent service is simply the standard. <strong>South Korea and China</strong> are similar in everyday restaurants and taxis, though high-end hotels in China increasingly accept tips for specific help. In <strong>Australia and New Zealand</strong>, tipping is never required — wages are comparatively high — but leaving 10% for genuinely good restaurant service is common and appreciated. <strong>Scandinavia</strong> prices service in; rounding up is a pleasant gesture, no more.</p>
+
+    <h2>Universal traveller's rules</h2>
+    <ul class="plain">
+      <li>Check the bill first: a service charge may already be included, as explained in <a href="#/article/tip-vs-service-charge">tip vs. service charge</a>.</li>
+      <li>Tip in local currency, in cash, directly to the person where customs allow — it is the surest way the money arrives.</li>
+      <li>When in doubt in a new country, 10% in a restaurant will rarely offend anyone outside the no-tipping cultures listed above.</li>
+      <li>Ask your hotel concierge or a local colleague; tipping norms are a question everyone understands.</li>
+    </ul>
+    <p>Back home, the numbers change again — keep the <a href="#/">tip calculator</a> handy and our <a href="#/article/how-much-to-tip">complete guide to how much to tip</a> for the US standards.</p>
+
+    <p><a href="#/articles">&larr; Back to all articles</a> &nbsp;·&nbsp; <a href="#/">Open the tip calculator</a></p>
+  </div>
+</section>
+
+<!-- ============================ FAQ ============================ -->
+<section class="page" id="page-faq">
+  <div class="prose">
+    <h1>Frequently Asked Questions</h1>
+    <p>Straight answers to the tipping questions people ask most. For the full percentage tables, see <a href="#/article/how-much-to-tip">how much to tip: the complete guide</a>.</p>
+
+    <div class="faqitem">
+      <h3>How do I calculate a tip quickly?</h3>
+      <p>Move the decimal point: 10% of the bill is the bill divided by ten. Double that for 20%, and add half again for 15%. Or skip the mental maths and use the <a href="#/">calculator on our homepage</a> — it also handles tax and splitting.</p>
+    </div>
+    <div class="faqitem">
+      <h3>Should the tip be calculated before or after tax?</h3>
+      <p>Before tax is the standard recommendation, because tax is not part of the service. Our calculator uses the pre-tax amount by default, with an option to include tax if you prefer.</p>
+    </div>
+    <div class="faqitem">
+      <h3>What is a good tip for food delivery?</h3>
+      <p>15–20% of the order, with a $3–5 minimum. Add more for distance, large orders, stairs or bad weather — the driver's effort is mostly fixed, whatever the order costs.</p>
+    </div>
+    <div class="faqitem">
+      <h3>Do I tip if a service charge is already on the bill?</h3>
+      <p>Usually you do not need to add a full tip on top. A service charge is a mandatory business fee and may not reach the staff; a small extra in cash is a kind choice for excellent service. Our <a href="#/article/tip-vs-service-charge">tip vs. service charge explainer</a> covers the details.</p>
+    </div>
+    <div class="faqitem">
+      <h3>How much should I tip the hairdresser?</h3>
+      <p>15–20% of the service price, plus $2–5 for an assistant who washed your hair, if applicable.</p>
+    </div>
+    <div class="faqitem">
+      <h3>Is it better to tip in cash or by card?</h3>
+      <p>Cash reaches staff fastest and in full, and is preferred for hotel housekeeping. Card tips are fine and sometimes the only option. Either is far better than debating it and tipping nothing.</p>
+    </div>
+    <div class="faqitem">
+      <h3>What if the service was bad?</h3>
+      <p>Raise the problem during the meal, when it can still be fixed. If it stays poor, reducing the tip to around 10% is a recognised signal; leaving nothing is usually misread as forgetfulness.</p>
+    </div>
+    <div class="faqitem">
+      <h3>Do I tip on takeaway orders?</h3>
+      <p>It is optional. Counter staff are paid full wages, so anything you leave — 10% or loose change — is a bonus, not an obligation.</p>
+    </div>
+    <div class="faqitem">
+      <h3>How does bill splitting work with a tip?</h3>
+      <p>Add the tip and any tax to the bill first, then divide the grand total by the number of people. The calculator does this automatically and shows each person's share and their portion of the tip.</p>
+    </div>
+    <div class="faqitem">
+      <h3>Does TipCalcHub store my bill amounts?</h3>
+      <p>No. The calculator runs entirely in your browser; nothing you type is sent anywhere or saved. See our <a href="#/privacy">privacy policy</a>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ABOUT ============================ -->
+<section class="page" id="page-about">
+  <div class="prose">
+    <h1>About TipCalcHub</h1>
+    <p>TipCalcHub is a small, independent website built around one simple idea: nobody should have to do percentage maths at a restaurant table. The site pairs a fast, free <a href="#/">tip calculator</a> — with tax handling and even bill splitting — with a set of honest, original guides to tipping customs at home and abroad.</p>
+    <p>Everything here is written from scratch by the TipCalcHub team. We do not copy other sites' tables or text; where customs are described, they reflect widely documented practice, and our guides explain the reasoning so you can judge edge cases yourself. Tipping norms change over time, and we review our guides periodically to keep the figures current.</p>
+    <p>The calculator itself is deliberately simple and private: it runs entirely in your browser, needs no account, and stores nothing. If you spot an error, disagree with a recommendation, or want a guide to a situation we have not covered, we would genuinely like to hear from you via the <a href="#/contact">contact page</a>.</p>
+    <h2>What you will find here</h2>
+    <ul class="plain">
+      <li>The <a href="#/">tip calculator</a> — tip, tax, totals and per-person splits.</li>
+      <li><a href="#/articles">Articles and guides</a> — how much to tip, restaurant rules, service charges, and worldwide etiquette.</li>
+      <li>An <a href="#/faq">FAQ page</a> answering the most common tipping questions.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================ CONTACT ============================ -->
+<section class="page" id="page-contact">
+  <div class="prose">
+    <h1>Contact Us</h1>
+    <p>Questions, corrections, or a tipping situation our guides do not cover yet? The fastest way to reach the TipCalcHub team is by email:</p>
+    <p><strong><a href="mailto:contact@tipcalchub.github.io">contact@tipcalchub.github.io</a></strong></p>
+    <p>We read every message and reply to most within a few working days. If you are reporting an error in a guide, telling us which page and what you believe the correct custom is helps us fix it quickly. Please do not send personal financial information — the calculator needs none, and neither do we.</p>
+    <p>For questions about how the site handles data, see the <a href="#/privacy">privacy policy</a>; for the rules of using the site, see our <a href="#/terms">terms of use</a>.</p>
+  </div>
+</section>
+
+<!-- ============================ PRIVACY ============================ -->
+<section class="page" id="page-privacy">
+  <div class="prose">
+    <h1>Privacy Policy</h1>
+    <p class="meta-line">Last updated: 2026.</p>
+    <p>TipCalcHub is designed to collect as little information as possible.</p>
+    <h2>The calculator</h2>
+    <p>The tip calculator runs entirely in your own browser. The amounts, percentages and splits you enter are never transmitted to us, never stored in cookies or web storage, and disappear when you close the page.</p>
+    <h2>What we collect</h2>
+    <p>We do not operate user accounts, comment systems or mailing lists, and we do not ask for names, addresses or payment details. If you email us, we receive the address and contents of your message and use them only to reply.</p>
+    <h2>Cookies and analytics</h2>
+    <p>This site does not set advertising or tracking cookies. Standard server logs kept by our hosting provider may record technical details such as your browser type and the pages requested; these are used only to keep the site running and to understand aggregate usage.</p>
+    <h2>Third-party links</h2>
+    <p>Where we link to external websites, those sites have their own privacy policies, and we are not responsible for their practices.</p>
+    <h2>Changes</h2>
+    <p>If this policy changes, the updated version will be posted on this page with a revised date. Questions about privacy can be sent through our <a href="#/contact">contact page</a>.</p>
+  </div>
+</section>
+
+<!-- ============================ TERMS ============================ -->
+<section class="page" id="page-terms">
+  <div class="prose">
+    <h1>Terms of Use</h1>
+    <p class="meta-line">Last updated: 2026.</p>
+    <p>By using TipCalcHub you agree to these terms. If you do not agree, please do not use the site.</p>
+    <h2>The service</h2>
+    <p>TipCalcHub provides a free tip calculator and informational guides about tipping customs. The content is provided for general information only. Tipping is a social custom, not a legal obligation in most situations, and customs described here are general guidance rather than rules for any specific business or country.</p>
+    <h2>Accuracy</h2>
+    <p>We work to keep calculations correct and guides current, but we make no guarantee that every figure reflects the custom in every place at every time. Always check your actual bill, including any service charges, before paying.</p>
+    <h2>Acceptable use</h2>
+    <p>You may use the site for personal, non-commercial purposes. You may not copy substantial parts of the site's text for republication, attempt to disrupt the site, or misrepresent its content as your own.</p>
+    <h2>Liability</h2>
+    <p>To the fullest extent permitted by law, TipCalcHub is not liable for any loss arising from reliance on the calculator or guides, including over- or under-payment of a bill.</p>
+    <h2>Changes</h2>
+    <p>We may update these terms from time to time; the version posted here applies. Questions can be sent via the <a href="#/contact">contact page</a>.</p>
+  </div>
+</section>
+
+<!-- ============================ DISCLAIMER ============================ -->
+<section class="page" id="page-disclaimer">
+  <div class="prose">
+    <h1>Disclaimer</h1>
+    <p class="meta-line">Last updated: 2026.</p>
+    <p>The information on TipCalcHub — including the calculator results, percentage tables and etiquette guides — is provided in good faith for general guidance only. Tipping customs vary by business, region and country, and they change over time; no page on this site can capture every local rule.</p>
+    <p>Calculator results depend entirely on the figures you enter. Always verify the total on your actual bill, including taxes and any service charges the business has added, before paying. TipCalcHub accepts no responsibility for payments made in reliance on this site.</p>
+    <p>Nothing on this site constitutes financial, legal or employment advice. If you have a dispute about a charge, contact the business first and, if needed, your card provider or local consumer authority.</p>
+    <p>If you believe any information here is wrong, please tell us through the <a href="#/contact">contact page</a> and we will review it promptly.</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <a href="#/">Tip Calculator</a>
+      <a href="#/articles">Articles</a>
+      <a href="#/faq">FAQ</a>
+      <a href="#/about">About</a>
+      <a href="#/contact">Contact</a>
+      <a href="#/privacy">Privacy Policy</a>
+      <a href="#/terms">Terms of Use</a>
+      <a href="#/disclaimer">Disclaimer</a>
+    </div>
+    <p>© 2026 TipCalcHub. All rights reserved. Tip amounts are guidance based on widely accepted customs — always check your bill.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- Router ---------- */
+  var routes = {
+    "": "page-home",
+    "/": "page-home",
+    "/articles": "page-articles",
+    "/article/how-much-to-tip": "page-article-how-much-to-tip",
+    "/article/tipping-in-restaurants": "page-article-tipping-in-restaurants",
+    "/article/tip-vs-service-charge": "page-article-tip-vs-service-charge",
+    "/article/tipping-around-the-world": "page-article-tipping-around-the-world",
+    "/faq": "page-faq",
+    "/about": "page-about",
+    "/contact": "page-contact",
+    "/privacy": "page-privacy",
+    "/terms": "page-terms",
+    "/disclaimer": "page-disclaimer"
+  };
+  var titles = {
+    "page-home": "TipCalcHub — Tip Calculator: Work Out Tips, Tax & Bill Splits Instantly",
+    "page-articles": "Tipping Articles & Guides — TipCalcHub",
+    "page-article-how-much-to-tip": "How Much to Tip: The Complete Guide — TipCalcHub",
+    "page-article-tipping-in-restaurants": "Tipping in Restaurants: Everything Diners Get Wrong — TipCalcHub",
+    "page-article-tip-vs-service-charge": "Tip vs. Service Charge: What Is the Difference? — TipCalcHub",
+    "page-article-tipping-around-the-world": "Tipping Around the World: A Traveller's Guide — TipCalcHub",
+    "page-faq": "Frequently Asked Questions — TipCalcHub",
+    "page-about": "About — TipCalcHub",
+    "page-contact": "Contact — TipCalcHub",
+    "page-privacy": "Privacy Policy — TipCalcHub",
+    "page-terms": "Terms of Use — TipCalcHub",
+    "page-disclaimer": "Disclaimer — TipCalcHub"
+  };
+  function route(){
+    var hash = window.location.hash.replace(/^#/, "");
+    var id = routes.hasOwnProperty(hash) ? routes[hash] : "page-home";
+    var pages = document.querySelectorAll("section.page");
+    for (var i = 0; i < pages.length; i++){
+      pages[i].classList.toggle("on", pages[i].id === id);
+    }
+    if (titles[id]) document.title = titles[id];
+    window.scrollTo(0, 0);
+  }
+  window.addEventListener("hashchange", route);
+
+  /* ---------- Calculator ---------- */
+  var billEl = document.getElementById("bill");
+  var customEl = document.getElementById("customTip");
+  var peopleEl = document.getElementById("people");
+  var taxEl = document.getElementById("taxRate");
+  var tipOnTaxEl = document.getElementById("tipOnTax");
+  var errEl = document.getElementById("calcErr");
+  var presetBtns = document.querySelectorAll(".presets button");
+  var tipPct = 15;
+
+  function money(n){
+    return "$" + n.toFixed(2);
+  }
+  function num(el){
+    var v = parseFloat(el.value);
+    return isNaN(v) ? null : v;
+  }
+  function setActivePreset(){
+    for (var i = 0; i < presetBtns.length; i++){
+      var p = parseFloat(presetBtns[i].getAttribute("data-tip"));
+      presetBtns[i].classList.toggle("active", p === tipPct && customEl.value === "");
+    }
+  }
+  function calc(){
+    var bill = num(billEl);
+    var taxRate = num(taxEl);
+    var people = num(peopleEl);
+    var err = "";
+
+    if (bill !== null && bill < 0) err = "Bill amount cannot be negative.";
+    if (taxRate !== null && taxRate < 0) err = "Tax rate cannot be negative.";
+    if (people !== null && (people < 1 || Math.floor(people) !== people)) err = "Number of people must be a whole number of at least 1.";
+    errEl.textContent = err;
+
+    var b = (bill === null || bill < 0) ? 0 : bill;
+    var tr = (taxRate === null || taxRate < 0) ? 0 : taxRate;
+    var ppl = (people === null || people < 1) ? 1 : Math.floor(people);
+
+    var tax = b * tr / 100;
+    var tipBase = tipOnTaxEl.checked ? (b + tax) : b;
+    var tip = tipBase * tipPct / 100;
+    var total = b + tax + tip;
+
+    document.getElementById("rTip").textContent = money(tip);
+    document.getElementById("rTax").textContent = money(tax);
+    document.getElementById("rTotal").textContent = money(total);
+    document.getElementById("rEach").textContent = money(total / ppl);
+    document.getElementById("rEachTip").textContent = money(tip / ppl);
+  }
+
+  for (var i = 0; i < presetBtns.length; i++){
+    presetBtns[i].addEventListener("click", function(){
+      tipPct = parseFloat(this.getAttribute("data-tip"));
+      customEl.value = "";
+      setActivePreset();
+      calc();
+    });
+  }
+  customEl.addEventListener("input", function(){
+    var v = num(customEl);
+    if (v !== null && v >= 0) tipPct = v;
+    setActivePreset();
+    calc();
+  });
+  billEl.addEventListener("input", calc);
+  peopleEl.addEventListener("input", calc);
+  taxEl.addEventListener("input", calc);
+  tipOnTaxEl.addEventListener("change", calc);
+
+  route();
+  setActivePreset();
+  calc();
+})();
+</script>
+</body>
+</html>
